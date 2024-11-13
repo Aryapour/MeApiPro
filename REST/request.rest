@@ -1,0 +1,14 @@
+Get http://localhost:3000/data
+###
+
+Get http://localhost:3000/data/1
+
+###
+POST http://localhost:3000/data
+
+content-type: application/json
+{
+    "id" : "3",
+    "Fistname" : "New",
+    "Surename" : "User"
+}
