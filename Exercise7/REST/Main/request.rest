@@ -1,0 +1,74 @@
+
+GET http://localhost:3000/
+
+###
+Get http://localhost:3000/data
+
+###
+Get http://localhost:3000/data/1
+
+###
+Get http://localhost:3000/data/2
+
+//POST User with duplicate "id"
+###
+POST http://localhost:3000/data
+Content-Type: application/json
+
+{
+    "id": "1",
+    "Firstname": "Mehdi",
+    "Surname": "Aryapour"
+}
+
+//POST NewUser
+###
+POST http://localhost:3000/data
+content-type: application/json
+
+{
+    "id": "3",
+    "Firstname": "New",
+    "Surname": "User"
+}
+
+//GET request for NewUser added with "id": "3", "Firstname": "New", "Surname": "User"
+###
+Get http://localhost:3000/data/3
+
+// POST New User (invalid data format)
+###
+POST http://localhost:3000/data
+Content-Type: application/json
+
+{
+    "id": "4",
+    "Firstname": "Alex"
+}
+
+###
+
+# Update an existing entry
+PUT http://localhost:3000/data
+Content-Type: application/json
+
+
+{
+    "id": "1",
+    "Firstname": "UpdatedName",
+    "Surname": "UpdatedSurname"
+}
+
+
+###
+
+# Delete an entry 
+DELETE http://localhost:3000/data
+Content-Type: application/json
+
+{
+    "id": "1",
+    "Firstname": "UpdatedName",
+    "Surname": "UpdatedSurname"
+}
+
