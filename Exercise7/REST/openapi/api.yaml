@@ -48,7 +48,11 @@ paths:
                     Surname:
                       type: string
                     Email:
-                      type: string
+                       type: string
+        401:
+          $ref: '#/components/responses/UnauthorizedError'
+        403:
+          $ref: '#/components/responses/ForbiddenError'
 
     post:
       summary: Create a new user
@@ -121,6 +125,10 @@ paths:
                     type: string
         404:
           description: Record not found
+        401:
+          $ref: '#/components/responses/UnauthorizedError'
+        403:
+          $ref: '#/components/responses/ForbiddenError'  
 
     put:
       summary: Get a specific user's data by data_id
@@ -164,6 +172,10 @@ paths:
                     type: string
                   Email:
                     type: string
+        401:
+          $ref: '#/components/responses/UnauthorizedError'
+        403:
+          $ref: '#/components/responses/ForbiddenError'
         201:
           description: User created
           content:
@@ -196,6 +208,10 @@ paths:
           description: User deleted
         404:
           description: Record not found
+        401:
+          $ref: '#/components/responses/UnauthorizedError'
+        403:
+          $ref: '#/components/responses/ForbiddenError'  
 
 components:
   securitySchemes:
@@ -203,4 +219,30 @@ components:
       type: http
       scheme: bearer
       bearerFormat: JWT
-
+  responses:
+    UnauthorizedError:
+      description: Authentication failed
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+                example: Invalid token
+              message:
+                type: string
+                example: The token is invalid/expired
+    ForbiddenError:
+      description: Access forbidden
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+                example: Access denied
+              message:
+                type: string
+                example: permission required
